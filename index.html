@@ -441,9 +441,7 @@ img { max-width: 100%; display: block; }
   flex: 1; justify-content: center;
 }
 .nav-link {
-  font-size: 17.5px;
-  font-weight: 400;
-  font-family: var(--font-sans);
+  font-size: 16px;
   color: rgba(255,255,255,.85);
   text-decoration: none;
   position: relative;
@@ -504,8 +502,8 @@ img { max-width: 100%; display: block; }
 
 .hero-headline {
   font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 52px;
+  font-weight: 500;
+  font-size: clamp(40px, 5.2vw, 64px);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--cream-50);
@@ -517,14 +515,10 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 52px;
   color: var(--lilac-300);
 }
 .hero-sub {
-  font-size: 18.8px;
-  font-weight: 400;
-  font-family: var(--font-sans);
-  max-width: 400px;
+  font-size: 17px;
   line-height: 1.6;
   color: rgba(255, 245, 237, .82);
   max-width: 460px;
@@ -1638,9 +1632,7 @@ img { max-width: 100%; display: block; }
   background: transparent;
   color: var(--cream-50);
   border: 1.5px solid var(--lilac-300);
-  font-size: 17.5px;
-  font-weight: 400;
-  font-family: var(--font-sans);
+  font-size: 15px;
   padding: 12px 24px;
 }
 .btn-nav-cta:hover {
@@ -1650,38 +1642,13 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 8px 24px rgba(0,0,0,.18);
 }
 
-/* Hero CTA override */
-.hero .btn-ghost-light {
-  font-size: 18.8px;
-  font-weight: 400;
-  font-family: var(--font-sans);
-}
-
-/* Halftone behind hero photo */
-.hero-photo {
-  position: relative;
-  overflow: visible;
-}
-.hero-photo-dots {
-  position: absolute;
-  bottom: -40px;
-  right: -60px;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.85;
-}
-.hero-photo img {
-  position: relative;
-  z-index: 1;
-}
-
   </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.__resources = {
-      photoFe01: "https://static.wixstatic.com/media/42f1d1_a11a3cad36414af5a7443ad0b7e68164~mv2.png",
+      photoFe01: "",
       photoFe02: ""
     };
   </script>
@@ -1899,11 +1866,9 @@ function Hero() {
             <span className="alt">sem quebrar por dentro.</span>
           </h1>
           <p className="hero-sub reveal delay-1">
-            Unindo 21 anos de alta performance com<br/>
-            mais de 13 anos como terapeuta para<br/>
-            ajudar pessoas inteligentes e funcionais a<br/>
-            organizarem a mente, e escalarem a vida<br/>
-            com sustentabilidade.
+            Unindo 21 anos de alta performance com mais de 13 anos como
+            terapeuta para ajudar pessoas inteligentes e funcionais a
+            organizarem a mente, e escalarem a vida com sustentabilidade.
           </p>
           <a className="btn btn-ghost-light reveal delay-2" href="#servicos">
             Conheça os programas
@@ -1912,17 +1877,16 @@ function Hero() {
 
         <div className="hero-visual reveal delay-1">
           <div className="hero-photo float-soft">
-            <img src={window.__resources?.photoFe01 || ""} alt="Fernanda Magalhães Valadares" />
-            <div className="hero-photo-dots">
-              <HalftoneCorner />
-            </div>
+            <img src={window.__resources?.photoFe01 || "../assets/photo-fe-01.jpg"} alt="Fernanda Magalhães Valadares" />
+          </div>
+          <div className="hero-dots float-soft" style={{ animationDelay: '-3s' }}>
+            <HalftonePattern />
           </div>
         </div>
       </div>
     </section>
   );
 }
-
 
 /* ---------- Marquee ribbon ---------- */
 function Ribbon() {
@@ -2253,7 +2217,7 @@ function Services({ onOpen }) {
         <div className="section-head dark reveal">
           <span className="eyebrow-line dark">Sobre meu trabalho</span>
           <h2>
-            Três formas de trabalhar <span className="serif-i">comigo</span>
+            Formas de trabalhar <span className="serif-i">comigo</span>
           </h2>
           <p className="sub">
             Cada caminho atua em uma dimensão diferente do seu desenvolvimento,
@@ -2267,8 +2231,8 @@ function Services({ onOpen }) {
             <h3 className="svc-title">Programas de<br />Desenvolvimento</h3>
             <div className="svc-tags">
               <span className="svc-tag">Treinamentos</span>
+              <span className="svc-tag">Premium</span>
               <span className="svc-tag">Online</span>
-              <span className="svc-tag">Autogestão</span>
             </div>
           </div>
           <p className="svc-body">
@@ -2279,7 +2243,7 @@ function Services({ onOpen }) {
           <div className="svc-foot">
             <div className="svc-price-wrap">
               <div className="svc-price-from">A partir de</div>
-              <div className="svc-price">R$59,<span className="small">90</span></div>
+              <div className="svc-price">R$497</div>
               <div className="svc-price-note">ou em até 10× sem juros</div>
             </div>
             <button className="btn btn-ghost-dark" onClick={() => onOpen('programas')}>Ver todos programas</button>
@@ -2292,12 +2256,12 @@ function Services({ onOpen }) {
                 Clareza de objetivos, neurociência comportamental e fortalecimento
                 da identidade.
               </div>
-              <div className="svc-mod-meta">4h · Módulo único</div>
+              <div className="svc-mod-meta">4h · 5 módulos</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
               <div className="svc-mod-price">
-                <div className="num"><span className="x">10× de</span> R$59,90</div>
-                <div className="alt">ou R$499 à vista</div>
+                <div className="num"><span className="x">10× de</span> R$49,70</div>
+                <div className="alt">ou R$497 à vista</div>
               </div>
               <button className="svc-mod-cta" onClick={() => onOpen('programas')}>Saiba mais</button>
             </div>
@@ -2321,14 +2285,14 @@ function Services({ onOpen }) {
           <div className="svc-foot">
             <div className="svc-price-wrap">
               <div className="svc-price-from">Investimento</div>
-              <div className="svc-price">R$750<span className="small">/mês</span></div>
-              <div className="svc-price-note">Pacote trimestral ou R$1.999 à vista</div>
+              <div className="svc-price">R$3.000</div>
+              <div className="svc-price-note">ou 10x de R$300</div>
             </div>
             <button className="btn btn-ghost-dark" onClick={() => onOpen('mentoria')}>Saiba mais</button>
           </div>
         </div>
 
-        {/* Terapia — no price, explanatory text + CTA */}
+        {/* Terapia */}
         <div className="service-card blue reveal delay-3">
           <div className="svc-head">
             <h3 className="svc-title">Terapia<br />Integrativa</h3>
@@ -2338,17 +2302,38 @@ function Services({ onOpen }) {
             </div>
           </div>
           <p className="svc-body">
-            Terapia integrativa é o ponto de partida. Une escuta clínica,
-            neurociência e abordagens corporais para tratar o que está na raiz,
-            e não apenas o sintoma. Ajuda você a entender o que realmente trava,
-            regular emoções, reconectar-se com o próprio corpo e construir a
-            base que sustenta qualquer outro processo.
+            O ponto de partida. Para quem quer entender o que realmente está travando, no
+            emocional, nos padrões, nas crenças.
           </p>
-          <div className="svc-foot terapia-foot">
-            <p className="terapia-callout">
-              Quer entender se é o caminho para o seu momento? Vamos conversar.
-            </p>
-            <button className="btn btn-solid-teal" onClick={() => onOpen('terapia')}>Falar comigo</button>
+          <div className="svc-foot">
+            <div className="svc-price-wrap">
+              <div className="svc-price-from">Investimento</div>
+              <div className="svc-price" style={{ fontSize: 32, color: 'var(--teal-500)' }}>sob consulta</div>
+            </div>
+            <button className="btn btn-solid-teal" onClick={() => onOpen('terapia')}>Saiba mais</button>
+          </div>
+        </div>
+
+        {/* Palestras */}
+        <div className="service-card gray reveal delay-4">
+          <div className="svc-head">
+            <h3 className="svc-title">Palestras</h3>
+            <div className="svc-tags">
+              <span className="svc-tag">Presencial</span>
+              <span className="svc-tag">Alta performance</span>
+            </div>
+          </div>
+          <p className="svc-body">
+            Encontros que unem neurociência, comportamento e alta performance para
+            provocar reflexões práticas, fortalecer equipes e transformar a forma como as
+            pessoas lidam com foco, pressão e resultados.
+          </p>
+          <div className="svc-foot">
+            <div className="svc-price-wrap">
+              <div className="svc-price-from">Investimento</div>
+              <div className="svc-price" style={{ fontSize: 32, color: 'var(--ink)' }}>sob consulta</div>
+            </div>
+            <button className="btn btn-ghost-dark" onClick={() => onOpen('palestras')}>Saiba mais</button>
           </div>
         </div>
       </div>

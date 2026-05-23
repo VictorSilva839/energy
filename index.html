@@ -505,7 +505,7 @@ img { max-width: 100%; display: block; }
 .hero-headline {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 36px;
+  font-size: 52px;
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--cream-50);
@@ -517,13 +517,14 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 52px;
   color: var(--lilac-300);
 }
 .hero-sub {
   font-size: 18.8px;
   font-weight: 400;
   font-family: var(--font-sans);
+  max-width: 400px;
   line-height: 1.6;
   color: rgba(255, 245, 237, .82);
   max-width: 460px;
@@ -1656,13 +1657,31 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-sans);
 }
 
+/* Halftone behind hero photo */
+.hero-photo {
+  position: relative;
+  overflow: visible;
+}
+.hero-photo-dots {
+  position: absolute;
+  bottom: -40px;
+  right: -60px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.hero-photo img {
+  position: relative;
+  z-index: 1;
+}
+
   </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.__resources = {
-      photoFe01: "https://static.wixstatic.com/media/42f1d1_527b2c05a0d94b1ea0d11548ddc931b1~mv2.png",
+      photoFe01: "https://static.wixstatic.com/media/42f1d1_a11a3cad36414af5a7443ad0b7e68164~mv2.png",
       photoFe02: ""
     };
   </script>
@@ -1880,9 +1899,11 @@ function Hero() {
             <span className="alt">sem quebrar por dentro.</span>
           </h1>
           <p className="hero-sub reveal delay-1">
-            Unindo 21 anos de alta performance com mais de 13 anos como
-            terapeuta para ajudar pessoas inteligentes e funcionais a
-            organizarem a mente, e escalarem a vida com sustentabilidade.
+            Unindo 21 anos de alta performance com<br/>
+            mais de 13 anos como terapeuta para<br/>
+            ajudar pessoas inteligentes e funcionais a<br/>
+            organizarem a mente, e escalarem a vida<br/>
+            com sustentabilidade.
           </p>
           <a className="btn btn-ghost-light reveal delay-2" href="#servicos">
             Conheça os programas
@@ -1891,16 +1912,17 @@ function Hero() {
 
         <div className="hero-visual reveal delay-1">
           <div className="hero-photo float-soft">
-            <img src={window.__resources?.photoFe01 || "../assets/photo-fe-01.jpg"} alt="Fernanda Magalhães Valadares" />
-          </div>
-          <div className="hero-dots float-soft" style={{ animationDelay: '-3s' }}>
-            <HalftonePattern />
+            <img src={window.__resources?.photoFe01 || ""} alt="Fernanda Magalhães Valadares" />
+            <div className="hero-photo-dots">
+              <HalftoneCorner />
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ---------- Marquee ribbon ---------- */
 function Ribbon() {
